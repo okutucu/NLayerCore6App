@@ -32,8 +32,6 @@ namespace Project.Repository.Repositories
             return await _dbSet.AnyAsync(exp);
         }
 
-
-
         public IQueryable<T> GetAll(Expression<Func<T, bool>> exp)
         {
             return _dbSet.AsNoTracking().AsQueryable();
