@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Project.Core.Models;
 
-namespace Project.Repository.Configuraytions
+namespace Project.Repository.Configurations
 {
     internal class AppUserProfileConfiguration : IEntityTypeConfiguration<AppUserProfile>
     {
