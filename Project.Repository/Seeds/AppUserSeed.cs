@@ -16,7 +16,7 @@ namespace Project.Repository.Seeds
             builder.HasData
                 (
                 new AppUser { Id = 1, UserName = "Oguz" , Password = "1234" },
-                new AppUser { Id = 1, UserName = "Kaan" , Password = "3211" }
+                new AppUser { Id = 2, UserName = "Kaan" , Password = "3211" }
                 );
         }
     }
