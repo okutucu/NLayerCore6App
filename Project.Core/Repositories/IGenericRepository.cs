@@ -12,13 +12,15 @@ namespace Project.Core.Repositories
         // productRepository.Where(x=> x.id>5).OrderBy.ToListAsync() dediğimiz anda dbye sorgu yapacağı için daha performanslı olacaktır.
         IQueryable<T> Where(Expression<Func<T,bool>> exp);
         Task<bool> AnyAsync(Expression<Func<T, bool>> exp);
+        IQueryable<T> FirstOrDefault(Expression<Func<T, bool>> exp);
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
         void Update(T entity);
+        void UpdateRange(IEnumerable<T> entities);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
-
-
+        void Destroy(T entity);
+        void DestroyRange(IEnumerable<T> entities);
 
     }
 }
