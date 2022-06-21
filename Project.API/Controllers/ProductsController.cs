@@ -7,8 +7,6 @@ using Project.Core.Services;
 
 namespace Project.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
@@ -41,6 +39,8 @@ namespace Project.API.Controllers
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
 
+
+        // GET api/products/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -50,6 +50,8 @@ namespace Project.API.Controllers
 
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productDto));
         }
+
+        // POST api/product/
 
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
@@ -61,6 +63,8 @@ namespace Project.API.Controllers
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productsDto));
         }
 
+
+        // PUT api/product
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
@@ -69,6 +73,7 @@ namespace Project.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
+        // DELETE api/products/5
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
