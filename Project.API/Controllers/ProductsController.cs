@@ -10,14 +10,12 @@ namespace Project.API.Controllers
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IService<Product> _service;
         private readonly IProductService _productService;
 
 
         public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
-            _service = service;
             _productService = productService;
         }
 
@@ -34,7 +32,7 @@ namespace Project.API.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            IEnumerable<Product> products = await _service.GetAllAsync();
+            IEnumerable<Product> products = await _productService.GetAllAsync();
             List<ProductDto> productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
@@ -44,19 +42,19 @@ namespace Project.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            Product product = await _service.GetByIdAsync(id);
+            Product product = await _productService.GetByIdAsync(id);
 
             ProductDto productDto = _mapper.Map<ProductDto>(product);
 
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productDto));
         }
 
-        // POST api/product/
+        // POST api/products/
 
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
         {
-            Product product = await _service.AddAsync(_mapper.Map<Product>(productDto));
+            Product product = await _productService.AddAsync(_mapper.Map<Product>(productDto));
 
             ProductDto productsDto = _mapper.Map<ProductDto>(product);
 
@@ -64,11 +62,11 @@ namespace Project.API.Controllers
         }
 
 
-        // PUT api/product
+        // PUT api/products
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
-            await _service.UpdateAsync(_mapper.Map<Product>(productDto));
+            await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
@@ -78,9 +76,9 @@ namespace Project.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Product product = await _service.GetByIdAsync(id);
+            Product product = await _productService.GetByIdAsync(id);
 
-            await _service.RemoveAsync(product);
+            await _productService.RemoveAsync(product);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
