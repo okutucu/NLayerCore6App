@@ -17,6 +17,7 @@ namespace Project.Service.Mapping
             CreateMap<Product, ProductWithCategoryDto > ();
             CreateMap<Category, CategoryWithProductsDto > ();
             CreateMap<CategoryUpdateDto, Category>();
+            CreateMap<AppUser, AppUserWithAppUserProfile>();
 
 
         }
