@@ -19,11 +19,11 @@ namespace Project.API.Controllers
             _mapper = mapper;
         }
 
-        // GET api/appuser//GetAppUsersWithAppUserProfile/2
+        // GET api/appuser//GetAppUsersWithAppUserProfile
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAppUsersWithAppUserProfile(int appUserId)
         {
-            return CreateActionResult(await _appUserService.GetAppUsersWithAppUserProfile(appUserId));
+            return CreateActionResult(await _appUserService.GetAppUsersWithAppUserProfile());
         }
 
 

@@ -5,7 +5,7 @@ namespace Project.Core.Repositories
     public interface IAppUserRepository : IGenericRepository<AppUser>
     {
 
-        Task<AppUser> GetAppUsersWithAppUserProfile(int appUserId);
+        Task<List<AppUser>> GetAppUsersWithAppUserProfile();
         
     }
 }

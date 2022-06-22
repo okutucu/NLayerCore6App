@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Project.Service\Project.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middlewares\" />
-  </ItemGroup>
-
 </Project>

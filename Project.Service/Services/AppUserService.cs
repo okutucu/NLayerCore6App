@@ -19,13 +19,13 @@ namespace Project.Service.Services
             _appUserRepository = appUserRepository;
         }
 
-        public async Task<CustomResponseDto<AppUserWithAppUserProfile>> GetAppUsersWithAppUserProfile(int appUserId)
+        public async Task<CustomResponseDto<List<AppUserWithAppUserProfile>>> GetAppUsersWithAppUserProfile()
         {
-            AppUser appUser = await _appUserRepository.GetAppUsersWithAppUserProfile(appUserId);
+            List<AppUser> appUsers = await _appUserRepository.GetAppUsersWithAppUserProfile();
 
-            AppUserWithAppUserProfile appUserDto = _mapper.Map<AppUserWithAppUserProfile>(appUser);
+            List<AppUserWithAppUserProfile> appUserDto = _mapper.Map<List<AppUserWithAppUserProfile>>(appUsers);
 
-            return CustomResponseDto<AppUserWithAppUserProfile>.Success(200, appUserDto);
+            return CustomResponseDto<List<AppUserWithAppUserProfile>>.Success(200, appUserDto);
             
 
         }

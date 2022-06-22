@@ -2,6 +2,6 @@
 {
     public class AppUserWithAppUserProfile : AppUserDto
     {
-        public AppUserDto Profile { get; set; }
+        public AppUserProfileDto Profile { get; set; }
     }
 }

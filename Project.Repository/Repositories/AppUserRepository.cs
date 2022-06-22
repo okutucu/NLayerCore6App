@@ -12,9 +12,9 @@ namespace Project.Repository.Repositories
 
        
 
-        public async Task<AppUser> GetAppUsersWithAppUserProfile(int appUserId)
+        public async Task<List<AppUser>> GetAppUsersWithAppUserProfile()
         {
-            return await _context.AppUsers.Include(x => x.AppUserProfile).Where(x => x.Id == appUserId).SingleOrDefaultAsync();
+            return await _context.AppUsers.Include(x => x.AppUserProfile).ToListAsync();
         }
     }
 }
