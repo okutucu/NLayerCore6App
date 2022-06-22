@@ -20,6 +20,7 @@ namespace Project.API.Middlewares
                     int statusCode = exceptionFeature.Error switch
                     {
                         ClientSideException => 400,
+                        NotFoundException => 404,
                         _ => 500
                     };
 

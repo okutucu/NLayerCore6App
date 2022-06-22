@@ -9,6 +9,7 @@ using Project.Core.Models;
 using Project.Core.Repositories;
 using Project.Core.Services;
 using Project.Core.UnitOfWorks;
+using Project.Service.Exceptions;
 
 namespace Project.Service.Services
 {
@@ -22,8 +23,6 @@ namespace Project.Service.Services
             _repository = repository;
             _unitOfWork = unitOfWork;
         }
-
-
 
 
         public async Task<T> AddAsync(T entity)
@@ -53,7 +52,14 @@ namespace Project.Service.Services
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+           T hasProduct  = await _repository.GetByIdAsync(id);
+
+            if(hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}({id}) not found");
+            }
+
+            return hasProduct;
         }
 
         public async Task RemoveAsync(T entity)
