@@ -1,9 +1,12 @@
 using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project.API.Filters;
 using Project.API.Middlewares;
+using Project.API.Modules;
 using Project.Core.Repositories;
 using Project.Core.Services;
 using Project.Core.UnitOfWorks;
@@ -32,22 +35,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
-
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-
-
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-
-builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
-builder.Services.AddScoped<IAppUserService, AppUserService>();
 
 
 builder.Services.AddDbContext<AppDbContext>(x =>
@@ -57,6 +45,10 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 });
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(cB => cB.RegisterModule(new RepoServiceModule()));
+ 
 
 var app = builder.Build();
 
