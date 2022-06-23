@@ -77,13 +77,13 @@ namespace Project.Caching
             return Task.FromResult(product);
         }
 
-        public  Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
             IEnumerable<Product> products = _memoryCache.Get<IEnumerable<Product>>(cacheProductKey);
 
             List<ProductWithCategoryDto> productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
-            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
+            return Task.FromResult(productsWithCategoryDto);
 
         }
 

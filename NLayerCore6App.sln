@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Service", "Project.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.API", "Project.API\Project.API.csproj", "{BF858AC2-C647-485E-9632-BAC3EE70D0A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Caching", "Project.Caching\Project.Caching.csproj", "{6DA14B1F-EB7F-4224-9156-8AD2EF16E807}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Caching", "Project.Caching\Project.Caching.csproj", "{6DA14B1F-EB7F-4224-9156-8AD2EF16E807}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.WEBUI", "Project.WEBUI\Project.WEBUI.csproj", "{3A69858D-09B5-4F7B-809F-8611BEC23E16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{6DA14B1F-EB7F-4224-9156-8AD2EF16E807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DA14B1F-EB7F-4224-9156-8AD2EF16E807}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DA14B1F-EB7F-4224-9156-8AD2EF16E807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A69858D-09B5-4F7B-809F-8611BEC23E16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A69858D-09B5-4F7B-809F-8611BEC23E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A69858D-09B5-4F7B-809F-8611BEC23E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A69858D-09B5-4F7B-809F-8611BEC23E16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
