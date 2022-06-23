@@ -5,12 +5,14 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Project.Core.DTOs;
 using Project.Core.Models;
 using Project.Core.Repositories;
 using Project.Core.Services;
 using Project.Core.UnitOfWorks;
+using Project.Service.Exceptions;
 
 namespace Project.Caching
 {
@@ -33,20 +35,26 @@ namespace Project.Caching
 
             if(!_memoryCache.TryGetValue(cacheProductKey, out _))
             {
-                _memoryCache.Set(cacheProductKey, _repository.GetAll().ToList());
+                _memoryCache.Set(cacheProductKey, _repository.GetProductsWithCategory());
             }
         }
 
 
 
-        public Task<Product> AddAsync(Product entity)
+        public async Task<Product> AddAsync(Product entity)
         {
-            throw new NotImplementedException();
+            await _repository.AddAsync(entity);
+            await _unitOfWork.CommitAsync();
+            await CacheAllProductsAsync();
+            return entity;
         }
 
-        public Task<IEnumerable<Product>> AddRangeAsync(IEnumerable<Product> entities)
+        public async Task<IEnumerable<Product>> AddRangeAsync(IEnumerable<Product> entities)
         {
-            throw new NotImplementedException();
+            await _repository.AddRangeAsync(entities);
+            await _unitOfWork.CommitAsync();
+            await CacheAllProductsAsync();
+            return entities;
         }
 
         public Task<bool> AnyAsync(Expression<Func<Product, bool>> exp)
@@ -56,37 +64,61 @@ namespace Project.Caching
 
         public Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(cacheProductKey));
         }
 
         public Task<Product> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            Product product = _memoryCache.Get<List<Product>>(cacheProductKey).FirstOrDefault(x => x.Id == id);
+
+            if(product == null)
+            {
+                throw new NotFoundException($"{typeof(Product).Name}({id}) not found");
+            }
+            return Task.FromResult(product);
         }
 
-        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        public  Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
-            throw new NotImplementedException();
+            IEnumerable<Product> products = _memoryCache.Get<IEnumerable<Product>>(cacheProductKey);
+
+            List<ProductWithCategoryDto> productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
+
+            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
+
         }
 
-        public Task RemoveAsync(Product entity)
+        public async Task RemoveAsync(Product entity)
         {
-            throw new NotImplementedException();
+            _repository.Remove(entity);
+            await _unitOfWork.CommitAsync();
+            await CacheAllProductsAsync();
         }
 
-        public Task RemoveRangeAsync(IEnumerable<Product> entities)
+        public async Task RemoveRangeAsync(IEnumerable<Product> entities)
         {
-            throw new NotImplementedException();
+            _repository.RemoveRange(entities);
+            await _unitOfWork.CommitAsync();
+            await CacheAllProductsAsync();
         }
 
-        public Task UpdateAsync(Product entity)
+        public async Task UpdateAsync(Product entity)
         {
-            throw new NotImplementedException();
+            _repository.Update(entity);
+            await _unitOfWork.CommitAsync();
+            await CacheAllProductsAsync();
         }
 
         public IQueryable<Product> Where(Expression<Func<Product, bool>> exp)
         {
-            throw new NotImplementedException();
+           return _memoryCache.Get<List<Product>>(cacheProductKey).Where(exp.Compile()).AsQueryable();
+        }
+
+
+
+        public async Task CacheAllProductsAsync()
+        {
+            _memoryCache.Set(cacheProductKey, await _repository.GetAll().ToListAsync());
         }
     }
 }
