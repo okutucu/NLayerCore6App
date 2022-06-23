@@ -35,10 +35,9 @@ namespace Project.Caching
 
             if(!_memoryCache.TryGetValue(cacheProductKey, out _))
             {
-                _memoryCache.Set(cacheProductKey, _repository.GetProductsWithCategory());
+                _memoryCache.Set(cacheProductKey, _repository.GetProductsWithCategory().Result);
             }
         }
-
 
 
         public async Task<Product> AddAsync(Product entity)

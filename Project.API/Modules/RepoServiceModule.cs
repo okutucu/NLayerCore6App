@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+using Project.Caching;
 using Project.Core.Repositories;
 using Project.Core.Services;
 using Project.Core.UnitOfWorks;
@@ -33,6 +34,8 @@ namespace Project.API.Modules
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
 
 
