@@ -10,7 +10,7 @@ namespace Project.Repository.Repositories
         {
         }
 
-       
+
 
         public async Task<List<AppUser>> GetAppUsersWithAppUserProfile()
         {

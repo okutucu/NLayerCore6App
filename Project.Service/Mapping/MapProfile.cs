@@ -10,12 +10,12 @@ namespace Project.Service.Mapping
         {
             CreateMap<AppUser, AppUserDto>().ReverseMap();
             CreateMap<AppUserProfile, AppUserProfileDto>().ReverseMap();
-            CreateMap<Product,ProductDto>().ReverseMap();
-            CreateMap<Category,CategoryDto>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<ProductFeature, ProductFeatureDto>().ReverseMap();
             CreateMap<ProductUpdateDto, Product>();
-            CreateMap<Product, ProductWithCategoryDto > ();
-            CreateMap<Category, CategoryWithProductsDto > ();
+            CreateMap<Product, ProductWithCategoryDto>();
+            CreateMap<Category, CategoryWithProductsDto>();
             CreateMap<CategoryUpdateDto, Category>();
             CreateMap<AppUser, AppUserWithAppUserProfile>();
 

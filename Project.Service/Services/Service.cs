@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Project.Core.Models;
 using Project.Core.Repositories;
@@ -45,9 +40,9 @@ namespace Project.Service.Services
         }
         public async Task<T> GetByIdAsync(int id)
         {
-           T hasProduct  = await _repository.GetByIdAsync(id);
+            T hasProduct = await _repository.GetByIdAsync(id);
 
-            if(hasProduct == null)
+            if (hasProduct == null)
             {
                 throw new NotFoundException($"{typeof(T).Name}({id}) not found");
             }
@@ -59,7 +54,7 @@ namespace Project.Service.Services
             _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
         }
-        public  async Task RemoveRangeAsync(IEnumerable<T> entities)
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
             _repository.RemoveRange(entities);
             await _unitOfWork.CommitAsync();

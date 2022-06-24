@@ -19,7 +19,7 @@ namespace Project.Repository.Repositories
 
         public async Task AddAsync(T entity)
         {
-           await _dbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
@@ -49,7 +49,7 @@ namespace Project.Repository.Repositories
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-           _dbSet.RemoveRange(entities);
+            _dbSet.RemoveRange(entities);
         }
 
         public void Update(T entity)
