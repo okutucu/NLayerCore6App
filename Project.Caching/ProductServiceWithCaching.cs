@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -33,7 +28,7 @@ namespace Project.Caching
             _unitOfWork = unitOfWork;
 
 
-            if(!_memoryCache.TryGetValue(cacheProductKey, out _))
+            if (!_memoryCache.TryGetValue(cacheProductKey, out _))
             {
                 _memoryCache.Set(cacheProductKey, _repository.GetProductsWithCategory().Result);
             }
@@ -70,7 +65,7 @@ namespace Project.Caching
         {
             Product product = _memoryCache.Get<List<Product>>(cacheProductKey).FirstOrDefault(x => x.Id == id);
 
-            if(product == null)
+            if (product == null)
             {
                 throw new NotFoundException($"{typeof(Product).Name}({id}) not found");
             }
@@ -110,7 +105,7 @@ namespace Project.Caching
 
         public IQueryable<Product> Where(Expression<Func<Product, bool>> exp)
         {
-           return _memoryCache.Get<List<Product>>(cacheProductKey).Where(exp.Compile()).AsQueryable();
+            return _memoryCache.Get<List<Product>>(cacheProductKey).Where(exp.Compile()).AsQueryable();
         }
 
 

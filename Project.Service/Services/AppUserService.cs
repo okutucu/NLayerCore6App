@@ -26,7 +26,7 @@ namespace Project.Service.Services
             List<AppUserWithAppUserProfile> appUserDto = _mapper.Map<List<AppUserWithAppUserProfile>>(appUsers);
 
             return CustomResponseDto<List<AppUserWithAppUserProfile>>.Success(200, appUserDto);
-            
+
 
         }
     }

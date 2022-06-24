@@ -13,7 +13,7 @@ namespace Project.Repository.Configurations
             builder.Property(x => x.Stock).IsRequired();
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)");
 
-           
+
         }
     }
 }

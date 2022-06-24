@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Project.Core.Enums;
+﻿using Project.Core.Enums;
 
 namespace Project.Core.Models
 {
@@ -19,6 +14,6 @@ namespace Project.Core.Models
             CreatedDate = DateTime.Now;
             Status = DataStatus.Inserted;
         }
-       
+
     }
 }

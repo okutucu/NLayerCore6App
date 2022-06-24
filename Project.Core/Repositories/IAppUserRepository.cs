@@ -6,6 +6,6 @@ namespace Project.Core.Repositories
     {
 
         Task<List<AppUser>> GetAppUsersWithAppUserProfile();
-        
+
     }
 }
