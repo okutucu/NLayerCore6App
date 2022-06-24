@@ -3,11 +3,11 @@ using Project.Core.Services;
 
 namespace Project.WEBUI.Controllers
 {
-	public class ProductController : Controller
+	public class ProductsController : Controller
 	{
 		private readonly IProductService _service;
 
-		public ProductController(IProductService service)
+		public ProductsController(IProductService service)
 		{
 			_service = service;
 		}

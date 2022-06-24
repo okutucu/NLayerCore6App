@@ -1,7 +1,32 @@
+using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Project.Repository;
+using Project.Service.Mapping;
+using Project.WEBUI.Modules;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddDbContext<AppDbContext>(x =>
+{
+	x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+	{
+		option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+	});
+});
+
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(cB => cB.RegisterModule(new RepoServiceModule()));
+
+
+
 
 var app = builder.Build();
 
