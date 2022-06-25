@@ -9,11 +9,7 @@ namespace Project.Core.Models
         public DateTime? DeletedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DataStatus Status { get; set; }
-        public BaseEntity()
-        {
-            CreatedDate = DateTime.Now;
-            Status = DataStatus.Inserted;
-        }
+        
 
     }
 }
