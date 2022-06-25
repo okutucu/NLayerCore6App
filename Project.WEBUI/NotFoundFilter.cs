@@ -17,7 +17,7 @@ namespace Project.WEBUI
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            object idValue = context.ActionArguments.Values.FirstOrDefault();
+            var idValue = context.ActionArguments.Values.FirstOrDefault();
 
             if (idValue == null)
             {

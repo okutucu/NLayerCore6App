@@ -24,9 +24,9 @@ namespace Project.WEBUI.Modules
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
 
-            Assembly apiAssembly = Assembly.GetExecutingAssembly();
-            Assembly repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
-            Assembly serviceAssembly = Assembly.GetAssembly(typeof(MapProfile));
+            var apiAssembly = Assembly.GetExecutingAssembly();
+            var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
+            var serviceAssembly = Assembly.GetAssembly(typeof(MapProfile));
 
 
 
