@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.API", "Project.API\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Caching", "Project.Caching\Project.Caching.csproj", "{6DA14B1F-EB7F-4224-9156-8AD2EF16E807}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.WEBUI", "Project.WEBUI\Project.WEBUI.csproj", "{3A69858D-09B5-4F7B-809F-8611BEC23E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.WEBUI", "Project.WEBUI\Project.WEBUI.csproj", "{3A69858D-09B5-4F7B-809F-8611BEC23E16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{760A2664-39A4-4ABB-A095-D0D6A7204127}"
+	ProjectSection(SolutionItems) = preProject
+		Ports.txt = Ports.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
