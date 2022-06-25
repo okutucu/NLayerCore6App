@@ -88,5 +88,15 @@ namespace Project.WEBUI.Controllers
             return View(productDto);
         }
 
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            Product product = await _productService.GetByIdAsync(id);
+
+            await _productService.RemoveAsync(product);
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
