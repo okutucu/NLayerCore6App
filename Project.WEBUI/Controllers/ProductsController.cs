@@ -28,18 +28,15 @@ namespace Project.WEBUI.Controllers
 
         public async Task<IActionResult> Save()
         {
-
             IEnumerable<Category> categories = await _categoryService.GetAllAsync();
             List<CategoryDto> categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
 
             return View();
-
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Save(ProductDto productDto)
         {
 
@@ -54,9 +51,41 @@ namespace Project.WEBUI.Controllers
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
 
-
             return View();
 
+        }
+
+
+
+        public async Task<IActionResult> Update(int id)
+        {
+            Product product = await _productService.GetByIdAsync(id);
+
+            IEnumerable<Category> categories = await _categoryService.GetAllAsync();
+            List<CategoryDto> categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
+
+            ViewBag.categories = new SelectList(categoriesDto, "Id", "Name",product.CategoryId);
+
+            return View(_mapper.Map<ProductDto>(product));
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ProductDto productDto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
+                return RedirectToAction(nameof(Index));
+            }
+
+            IEnumerable<Category> categories = await _categoryService.GetAllAsync();
+            List<CategoryDto> categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
+
+            ViewBag.categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
+
+            return View(productDto);
         }
 
     }
