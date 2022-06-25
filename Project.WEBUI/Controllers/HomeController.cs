@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Project.WEBUI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Project.Core.DTOs;
 
 namespace Project.WEBUI.Controllers
 {
@@ -24,9 +23,9 @@ namespace Project.WEBUI.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(ErrorViewModel errorViewModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(errorViewModel);
         }
     }
 }
