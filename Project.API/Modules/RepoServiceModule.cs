@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using Project.Caching;
 using Project.Core.Repositories;
 using Project.Core.Services;
 using Project.Core.UnitOfWorks;

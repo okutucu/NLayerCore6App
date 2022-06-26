@@ -21,7 +21,7 @@ namespace Project.WEBUI.Services
 
         public async Task<List<ProductWithCategoryDto>> GetProductWithCategoryAsync()
         {
-            CustomResponseDto<List<ProductWithCategoryDto>> response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<ProductWithCategoryDto>>>("products/GetProductWithCategory");
+            CustomResponseDto<List<ProductWithCategoryDto>> response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<ProductWithCategoryDto>>>("product/GetProductWithCategory");
 
 
             return response.Data;
@@ -60,6 +60,6 @@ namespace Project.WEBUI.Services
 
 
 
-  
-    } 
+
+    }
 }

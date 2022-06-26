@@ -21,7 +21,7 @@ namespace Project.API.Filters
         {
             object idValue = context.ActionArguments.Values.FirstOrDefault();
 
-            if(idValue == null)
+            if (idValue == null)
             {
                 await next.Invoke();
                 return;
@@ -31,7 +31,7 @@ namespace Project.API.Filters
 
             bool anyEntity = await _service.AnyAsync(x => x.Id == id);
 
-            if(anyEntity)
+            if (anyEntity)
             {
                 await next.Invoke();
             }
