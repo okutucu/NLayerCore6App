@@ -1,5 +1,4 @@
-﻿ using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Core.DTOs;
 
 namespace Project.API.Controllers
@@ -12,7 +11,7 @@ namespace Project.API.Controllers
         [NonAction]
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
         {
-            if(response.StatusCode ==204)
+            if (response.StatusCode == 204)
             {
                 return new ObjectResult(null)
                 {

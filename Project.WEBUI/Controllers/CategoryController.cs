@@ -19,7 +19,7 @@ namespace Project.WEBUI.Controllers
         }
 
 
-        public async Task<IActionResult>  Index()
+        public async Task<IActionResult> Index()
         {
 
             IEnumerable<Category> categories = await _categoryService.GetAllAsync();

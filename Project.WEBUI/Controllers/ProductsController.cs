@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Project.Core.DTOs;
 using Project.Core.Models;
-using Project.Core.Services;
 using Project.WEBUI.Services;
 
 namespace Project.WEBUI.Controllers
@@ -19,7 +17,7 @@ namespace Project.WEBUI.Controllers
             _categoryApiService = categoryApiService;
         }
 
-       
+
 
         public async Task<IActionResult> Index()
         {
@@ -30,7 +28,7 @@ namespace Project.WEBUI.Controllers
         public async Task<IActionResult> Save()
         {
             List<CategoryDto> categoriesDto = await _categoryApiService.GetAllAsync();
-            
+
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
 
@@ -49,7 +47,7 @@ namespace Project.WEBUI.Controllers
             }
 
             List<CategoryDto> categoriesDto = await _categoryApiService.GetAllAsync();
-           
+
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
 
@@ -64,8 +62,8 @@ namespace Project.WEBUI.Controllers
             ProductDto product = await _productApiService.GetByIdAsync(id);
 
             List<CategoryDto> categoriesDto = await _categoryApiService.GetAllAsync();
-            
-            ViewBag.categories = new SelectList(categoriesDto, "Id", "Name",product.CategoryId);
+
+            ViewBag.categories = new SelectList(categoriesDto, "Id", "Name", product.CategoryId);
 
             return View(product);
 
@@ -82,7 +80,7 @@ namespace Project.WEBUI.Controllers
             }
 
             List<CategoryDto> categoriesDto = await _categoryApiService.GetAllAsync();
-        
+
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
 

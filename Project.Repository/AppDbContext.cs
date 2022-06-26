@@ -48,9 +48,9 @@ namespace Project.Repository
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            foreach(var item in ChangeTracker.Entries())
+            foreach (var item in ChangeTracker.Entries())
             {
-                if(item.Entity is BaseEntity entityReference)
+                if (item.Entity is BaseEntity entityReference)
                 {
                     switch (item.Entity)
                     {

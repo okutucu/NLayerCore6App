@@ -7,14 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Project.API.Filters;
 using Project.API.Middlewares;
 using Project.API.Modules;
-using Project.Core.Repositories;
-using Project.Core.Services;
-using Project.Core.UnitOfWorks;
 using Project.Repository;
-using Project.Repository.Repositories;
-using Project.Repository.UnitOfWorks;
 using Project.Service.Mapping;
-using Project.Service.Services;
 using Project.Service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,17 +36,17 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"),option =>
-    {
-        option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
-    });
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+     {
+         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+     });
 });
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(cB => cB.RegisterModule(new RepoServiceModule()));
 
 
- 
+
 
 var app = builder.Build();
 

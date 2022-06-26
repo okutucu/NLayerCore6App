@@ -9,7 +9,7 @@ namespace Project.Core.Models
         public DateTime? DeletedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DataStatus Status { get; set; }
-        
+
 
     }
 }

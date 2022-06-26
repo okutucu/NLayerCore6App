@@ -5,7 +5,7 @@ using Project.Service.Exceptions;
 
 namespace Project.API.Middlewares
 {
-    public  static class UseCustomExceptionHandler
+    public static class UseCustomExceptionHandler
     {
         public static void UseCustomException(this IApplicationBuilder app)
         {
